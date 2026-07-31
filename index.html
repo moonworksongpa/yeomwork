@@ -18,7 +18,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0}
 .hdr-l{display:flex;align-items:center;gap:10px}
 .hdr-l img{width:34px;height:34px;border-radius:50%;object-fit:cover}
-.hdr-l h1{font-size:15px;font-weight:900;color:#fff}
+.hdr-l h1{font-size:16px;font-weight:900;color:#fff}
 .hdr-l p{font-size:10px;color:var(--su)}
 .mbtn{width:36px;height:36px;background:var(--card);border:1px solid var(--bd);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
 .mbtn span{display:block;width:16px;height:2px;background:var(--tx);border-radius:2px;pointer-events:none}
@@ -29,6 +29,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
 .mi{padding:14px 18px;font-size:14px;font-weight:500;color:var(--tx);cursor:pointer;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
 .mi.on{color:var(--gr);font-weight:700}
 .mi.dim{color:var(--su);font-size:13px}
+.mi.dbl{border-bottom:3px double var(--bd)}
+.mdv{height:14px;background:var(--bg);border-bottom:1px solid var(--bd)}
 .snav{display:flex;padding:12px 16px 0;border-bottom:1px solid var(--bd);margin-bottom:14px}
 .stb{flex:1;padding:9px 0;background:none;border:none;font-family:inherit;font-size:13px;font-weight:500;color:var(--su);cursor:pointer;position:relative}
 .stb::after{content:'';position:absolute;bottom:-1px;left:15%;right:15%;height:2px;background:var(--gr);border-radius:2px;transform:scaleX(0);transition:transform .2s}
@@ -37,7 +39,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
 .pg{display:none}.pg.on{display:block}
 .sp{display:none;padding:0 16px}.sp.on{display:block}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
-.cl{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gr);margin-bottom:10px}
+.cl{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gr);margin-bottom:10px}
 .tr{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .tb{padding:10px 6px;background:var(--c2);border:1.5px solid var(--bd);border-radius:10px;cursor:pointer;text-align:center}
 .tb .tn{font-size:11px;font-weight:500;color:var(--su);display:block;margin-bottom:3px}
@@ -45,7 +47,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
 .tb.on{border-color:var(--gr);background:var(--gs)}
 .tb.on .tn{color:var(--gr)}.tb.on .tp{color:#fff}
 .fl{margin-bottom:10px}
-.fl label{display:block;font-size:11px;font-weight:600;color:var(--su);margin-bottom:5px}
+.fl label{display:block;font-size:12px;font-weight:600;color:var(--su);margin-bottom:5px}
 .fl input{width:100%;background:var(--c2);border:1px solid var(--bd);border-radius:9px;padding:10px 12px;font-family:inherit;font-size:14px;color:var(--tx);outline:none;-webkit-appearance:none}
 .fl input:focus{border-color:var(--gr)}
 .fl input::placeholder{color:var(--su)}
@@ -57,12 +59,17 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
 .pd{background:var(--c2);border:1px solid var(--gr);border-radius:9px;padding:10px 12px;font-size:16px;font-weight:900;color:#f0ead6;text-align:center}
 .btn{width:100%;padding:12px;border:none;border-radius:10px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
 .btn:active{opacity:.8}
-.bg{background:var(--gr);color:#fff}
+.bg{background:var(--gr);color:#fff;border:1px solid transparent}
 .bh{background:var(--c2);color:var(--tx);border:1px solid var(--bd)}
+.bb{background:rgba(96,165,250,.12);color:#7cb3f7;border:1px solid rgba(96,165,250,.35)}
+.bo{background:rgba(217,157,110,.10);color:#c79470;border:1px solid rgba(217,157,110,.28)}
+.ts.dis{opacity:.3}
 .bs{padding:7px 10px;font-size:12px;border-radius:8px;width:auto}
 .btn+.btn{margin-top:8px}
-.br{display:flex;gap:8px;margin-top:8px}
+.br{display:flex;align-items:stretch;gap:8px;margin-top:8px}
 .br .btn{flex:1}
+.br .btn+.btn{margin-top:0}
+.rbs .btn+.btn{margin-top:0}
 .pv{background:var(--c2);border:1px solid var(--bd);border-left:3px solid var(--gr);border-radius:9px;padding:12px;font-size:12px;line-height:1.75;color:var(--tx);white-space:pre-wrap;word-break:keep-all;margin-top:10px;display:none}
 .pv.on{display:block}
 .rc{background:var(--card);border:1px solid var(--bd);border-radius:11px;padding:12px;margin-bottom:10px}
@@ -75,7 +82,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
 .be{background:rgba(108,99,255,.15);color:#a78bfa}
 .rd{font-size:14px;font-weight:700;color:#fff;margin-bottom:2px}
 .rm{font-size:12px;color:var(--su);margin-bottom:9px}
-.rbs{display:flex;gap:6px}
+.rbs{display:flex;align-items:stretch;gap:6px}
 .ta{display:none;background:rgba(245,200,66,.08);border:2px solid var(--ye);border-radius:11px;padding:12px 13px;margin-bottom:12px}
 .ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:300;align-items:flex-end}
 .ov.show{display:flex}
@@ -105,10 +112,13 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
   <div class="mpnl">
     <div class="mphd">메뉴</div>
     <div class="mi on" id="mi-dp">🪑 1일권</div>
-    <div class="mi" id="mi-mt">🚪 미팅룸</div>
-    <div class="mi" id="mi-cs">💬 방문상담</div>
-    <div class="mi" id="mi-all">📋 전체 예약목록</div>
-    <div class="mi dim" id="mi-set">⚙️ 설정</div>
+    <div class="mi" id="mi-mt">💳 미팅룸(외부)</div>
+    <div class="mi dbl" id="mi-cs">💬 방문상담</div>
+    <div class="mi" id="mi-all">📋 외부예약 전체 목록</div>
+    <div class="mdv"></div>
+    <div class="mi" id="mi-mi">👥 미팅룸(내부)</div>
+    <div class="mdv"></div>
+    <div class="mi" id="mi-set">🔒 비번 설정</div>
   </div>
 </div>
 <!-- 1일권 -->
@@ -134,6 +144,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
       <button class="btn bh" id="dp-cp">📋 내용 복사</button>
       <button class="btn bg" id="dp-sm">📱 문자앱 열기</button>
     </div>
+    <button class="btn bh" id="dp-sv" style="margin-top:14px">💾 문자 없이 예약목록에 저장</button>
   </div>
   <div class="sp" id="dp-list">
     <div class="ta" id="dp-al"><div style="font-size:13px;font-weight:700;color:var(--ye);margin-bottom:5px">⏰ 오늘 입장안내 문자 발송 필요!</div><div id="dp-ab" style="font-size:12px;color:var(--tx);line-height:2"></div></div>
@@ -154,6 +165,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
       <div class="fl"><label>이용 인원</label><input type="number" id="mt-pp" placeholder="인원 수" min="1" max="30"></div>
       <div class="fl"><label>요금 <span style="color:var(--su);font-size:10px;font-weight:400">자동계산</span></label><div class="pd" id="mt-pr">인원과 시간을 선택하세요</div></div>
       <div class="fl"><label>고객 연락처</label><input type="tel" id="mt-ph" placeholder="010-0000-0000" maxlength="13"></div>
+      <div class="fl"><label>이름 <span style="color:var(--gr);font-size:10px;font-weight:400">QR공지용 · 뒤에 '님' 자동</span></label><input type="text" id="mt-nm" placeholder="ex)  송승원"></div>
     </div>
     <button class="btn bg" id="mt-gb">💬 입금안내 문자 생성</button>
     <div class="pv" id="mt-pv"></div>
@@ -161,10 +173,33 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
       <button class="btn bh" id="mt-cp">📋 내용 복사</button>
       <button class="btn bg" id="mt-sm">📱 문자앱 열기</button>
     </div>
+    <button class="btn bh" id="mt-sv" style="margin-top:14px">💾 문자 없이 예약목록에 저장</button>
   </div>
   <div class="sp" id="mt-list">
+    <button class="btn bo" id="mt-pub" style="margin-bottom:12px">📢 QR현황판 전체 복사</button>
     <div class="ta" id="mt-al"><div style="font-size:13px;font-weight:700;color:var(--ye);margin-bottom:5px">⏰ 오늘 입장안내 문자 발송 필요!</div><div id="mt-ab" style="font-size:12px;color:var(--tx);line-height:2"></div></div>
     <div id="mt-lw"></div>
+  </div>
+</div>
+<!-- 미팅룸(내부) -->
+<div class="pg" id="pg-mi">
+  <div class="snav">
+    <button class="stb on" id="mi-tn">새 예약</button>
+    <button class="stb" id="mi-tl">예약목록</button>
+  </div>
+  <div class="sp on" id="mi-new">
+    <div class="card"><div class="cl">멤버 예약 (무료)</div>
+      <div class="fl"><label>예약 날짜</label><input type="date" id="mi-date"></div>
+      <div class="fl"><label>시작 시간</label><div class="tp" id="mi-stp"></div></div>
+      <div class="fl"><label>종료 시간</label><div class="tp" id="mi-etp"></div></div>
+      <div class="fl"><label>이름 <span style="color:var(--gr);font-size:10px">QR공지용 · 뒤에 '대표님' 자동</span></label><input type="text" id="mi-nm" placeholder="ex)  한상문"></div>
+    </div>
+    <button class="btn bg" id="mi-sv">💾 예약목록에 저장</button>
+    <div class="card" style="margin-top:12px"><div class="cl">안내</div><p style="font-size:12px;color:var(--su);line-height:1.8">고정석·자유석 멤버의 무료 이용 예약입니다.<br>요금 계산과 문자 발송은 없고,<br>공지용 복사와 시간 겹침 확인에 사용됩니다.</p></div>
+  </div>
+  <div class="sp" id="mi-list">
+    <button class="btn bo" id="mi-pub" style="margin-bottom:12px">📢 QR현황판 전체 복사</button>
+    <div id="mi-lw"></div>
   </div>
 </div>
 <!-- 방문상담 -->
@@ -185,11 +220,28 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);
       <button class="btn bh" id="cs-cp">📋 내용 복사</button>
       <button class="btn bg" id="cs-sm">📱 문자앱 열기</button>
     </div>
+    <button class="btn bh" id="cs-sv" style="margin-top:14px">💾 문자 없이 예약목록에 저장</button>
   </div>
   <div class="sp" id="cs-list"><div id="cs-lw"></div></div>
 </div>
 <!-- 전체 -->
-<div class="pg" id="pg-all"><div style="padding:0 16px;margin-top:14px" id="all-w"></div></div>
+<div class="pg" id="pg-all">
+  <div style="padding:0 16px;margin-top:14px">
+    <div class="card"><div class="cl">알바 공유용</div>
+      <div class="fl"><label>복사 범위</label>
+        <div class="tp" id="nx-rg">
+          <div class="ts on" data-r="today">오늘</div>
+          <div class="ts" data-r="week">이번주</div>
+          <div class="ts" data-r="all">전체</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--su);line-height:1.7;margin-bottom:10px" id="nx-cnt">복사 대상 0건</div>
+      <button class="btn bb" id="nx-cp">🧾 알바 공유용 복사</button>
+      <p style="font-size:11px;color:var(--su);line-height:1.7;margin-top:9px">1일권·미팅룸(외부) 중 입금확인된 건만 복사돼요.</p>
+    </div>
+  </div>
+  <div style="padding:0 16px" id="all-w"></div>
+</div>
 <!-- 설정 -->
 <div class="pg" id="pg-set">
   <div style="padding:0 16px;margin-top:14px">
@@ -256,13 +308,21 @@ var MSG = {"dp_payment": "안녕하세요 문워크 스페이스 송파거여점
 
 var p9=localStorage.getItem('mw_pw9999')||'';
 var p8=localStorage.getItem('mw_pw8888')||'';
+(function(){
+  if(localStorage.getItem('mw_reset_v41'))return;
+  ['mw_dp','mw_mt','mw_mi','mw_cs'].forEach(function(k){localStorage.removeItem(k);});
+  localStorage.setItem('mw_reset_v41','1');
+})();
 var dpD=JSON.parse(localStorage.getItem('mw_dp')||'[]');
 var mtD=JSON.parse(localStorage.getItem('mw_mt')||'[]');
 var csD=JSON.parse(localStorage.getItem('mw_cs')||'[]');
+var miD=JSON.parse(localStorage.getItem('mw_mi')||'[]');
+var miS=null,miE=null;
 var dpT='모니터석',dpS=null,mtS=null,mtE=null,csS=null;
 var cfM='dp',cfId=null,cfA='9999',cfA2='9999',cfMsg='',cfPh='';
 var ctCb=null,dpMsg='',mtMsg='',csMsg='';
 var dpSv=false,mtSv=false,csSv=false,epw='9999';
+var nxR='today';
 
 function pad(n){return ('0'+n).slice(-2);}
 function fmt(m){if(m==null)return'';return pad(Math.floor(m/60))+':'+pad(m%60);}
@@ -275,17 +335,20 @@ function g(id){return document.getElementById(id);}
 function init(){
   var now=new Date();
   var t=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
-  g('dp-date').value=t;g('mt-date').value=t;g('cs-date').value=t;
+  g('dp-date').value=t;g('mt-date').value=t;g('cs-date').value=t;g('mi-date').value=t;
   bldTp('dp-tp',dpSl(),'dp');
-  bldTp('mt-stp',mtSl(),'ms');
-  bldTp('mt-etp',mtSl(),'me');
+  bldTp('mt-stp',mtSlS(),'ms');
+  bldTp('mt-etp',mtSlE(),'me');
+  bldTp('mi-stp',mtSlS(),'is');
+  bldTp('mi-etp',mtSlE(),'ie');
   bldTp('cs-tp',csSl(),'cs');
   rPw();autoD();setTimeout(todayChk,300);
   bind();
 }
 
 function dpSl(){var s=[];for(var h=8;h<24;h++){s.push(h*60);s.push(h*60+30);}return s;}
-function mtSl(){var s=[];for(var h=8;h<=20;h++){s.push(h*60);if(h<20)s.push(h*60+30);}return s;}
+function mtSlS(){var s=[];for(var m=480;m<=1380;m+=30)s.push(m);return s;}
+function mtSlE(){var s=[];for(var m=540;m<=1440;m+=30)s.push(m);return s;}
 function csSl(){var s=[];for(var h=10;h<=17;h++){s.push(h*60);if(h<17)s.push(h*60+30);}return s;}
 
 function bldTp(id,slots,cb){
@@ -298,23 +361,31 @@ function bldTp(id,slots,cb){
 function bind(){
   g('mbtn').onclick=function(){g('mov').classList.add('show');};
   g('mov').onclick=function(e){if(e.target===this)this.classList.remove('show');};
-  ['dp','mt','cs','all','set'].forEach(function(m){g('mi-'+m).onclick=function(){swM(m);};});
+  ['dp-date','mt-date','mi-date','cs-date'].forEach(function(id){g(id).addEventListener('change',refPast);});
+  refPast();
+  ['dp','mt','mi','cs','all','set'].forEach(function(m){g('mi-'+m).onclick=function(){swM(m);};});
   g('dp-tn').onclick=function(){swS('dp','new');};g('dp-tl').onclick=function(){swS('dp','list');};
   g('mt-tn').onclick=function(){swS('mt','new');};g('mt-tl').onclick=function(){swS('mt','list');};
+  g('mi-tn').onclick=function(){swS('mi','new');};g('mi-tl').onclick=function(){swS('mi','list');};
   g('cs-tn').onclick=function(){swS('cs','new');};g('cs-tl').onclick=function(){swS('cs','list');};
   g('dp-mon').onclick=function(){dpTy('모니터석');};g('dp-gen').onclick=function(){dpTy('일반석');};
-  ['dp-tp','mt-stp','mt-etp','cs-tp'].forEach(function(id){
+  ['dp-tp','mt-stp','mt-etp','mi-stp','mi-etp','cs-tp'].forEach(function(id){
     g(id).onclick=function(e){
       var el=e.target.closest('.ts');if(!el)return;
       var cb=el.dataset.cb;
       if(el.dataset.ex){opCt(cb);return;}
       var m=parseInt(el.dataset.m);
-      if(cb==='dp')dpPk(m);else if(cb==='ms')mtPS(m);else if(cb==='me')mtPE(m);else if(cb==='cs')csPk(m);
+      if(el.classList.contains('dis')){toast('이미 지난 시간이에요');return;}
+      if(cb==='dp')dpPk(m);else if(cb==='ms')mtPS(m);else if(cb==='me')mtPE(m);
+      else if(cb==='is')miPS(m);else if(cb==='ie')miPE(m);else if(cb==='cs')csPk(m);
     };
   });
   g('mt-pp').oninput=calcP;
   ['dp-ph','mt-ph','cs-ph'].forEach(function(id){g(id).oninput=function(){fmtPh(this);};});
   g('dp-gb').onclick=dpGen;g('mt-gb').onclick=mtGen;g('cs-gb').onclick=csGen;
+  g('dp-sv').onclick=dpOnly;g('mt-sv').onclick=mtOnly;g('cs-sv').onclick=csOnly;
+  g('mi-sv').onclick=miOnly;
+  g('mt-pub').onclick=pubAll;g('mi-pub').onclick=pubAll;
   g('dp-cp').onclick=function(){doCp(dpMsg);};
   g('dp-sm').onclick=function(){doSms('dp-ph',function(){dpSv=false;dpSave();});};
   g('mt-cp').onclick=function(){doCp(mtMsg);};
@@ -330,12 +401,22 @@ function bind(){
   g('cf-cp').onclick=function(){doCp(cfMsg);};g('cf-sm').onclick=function(){doSms2(cfPh);};
   g('cf-close').onclick=function(){g('cf-ov').classList.remove('show');};
   g('cf-ov').onclick=function(e){if(e.target===this)this.classList.remove('show');};
+  g('nx-rg').onclick=function(e){
+    var el=e.target.closest('.ts');if(!el)return;
+    nxR=el.dataset.r;
+    this.querySelectorAll('.ts').forEach(function(b){b.classList.toggle('on',b.dataset.r===nxR);});
+    nxCnt();
+  };
+  g('nx-cp').onclick=nxCp;
   g('ct-cl').onclick=function(){g('ct-ov').classList.remove('show');};
   g('ct-ov').onclick=function(e){if(e.target===this)this.classList.remove('show');};
   g('ct-g').onclick=function(e){
     var el=e.target.closest('.ts');if(!el)return;
     var m=parseInt(el.dataset.m);g('ct-ov').classList.remove('show');
-    if(ctCb==='dp')dpPk(m);else if(ctCb==='ms')mtPS(m);else if(ctCb==='me')mtPE(m);else if(ctCb==='cs')csPk(m);
+    var did=ctCb==='dp'?'dp-date':(ctCb==='ms'||ctCb==='me')?'mt-date':(ctCb==='is'||ctCb==='ie')?'mi-date':'cs-date';
+    if(pastChk(did,m))return;
+    if(ctCb==='dp')dpPk(m);else if(ctCb==='ms')mtPS(m);else if(ctCb==='me')mtPE(m);
+    else if(ctCb==='is')miPS(m);else if(ctCb==='ie')miPE(m);else if(ctCb==='cs')csPk(m);
   };
 }
 
@@ -344,7 +425,7 @@ function swM(mode){
   document.querySelectorAll('.mi').forEach(function(e){e.classList.remove('on');});
   g('pg-'+mode).classList.add('on');g('mi-'+mode).classList.add('on');
   g('mov').classList.remove('show');
-  if(mode==='all')rAll();if(mode==='set')rPw();
+  if(mode==='all'){rAll();nxCnt();}if(mode==='set')rPw();
 }
 function swS(pg,sec){
   var par=g('pg-'+pg);
@@ -352,7 +433,7 @@ function swS(pg,sec){
   par.querySelectorAll('.sp').forEach(function(e){e.classList.remove('on');});
   g(pg+'-t'+sec.charAt(0)).classList.add('on');
   g(pg+'-'+sec).classList.add('on');
-  if(sec==='list'){if(pg==='dp')rDp();else if(pg==='mt')rMt();else rCs();todayChk();}
+  if(sec==='list'){if(pg==='dp')rDp();else if(pg==='mt')rMt();else if(pg==='mi')rMi();else rCs();todayChk();}
 }
 function dpTy(t){dpT=t;g('dp-mon').classList.toggle('on',t==='모니터석');g('dp-gen').classList.toggle('on',t==='일반석');}
 function dpPk(m){dpS=m;document.querySelectorAll('#dp-tp .ts').forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.m)===m);});g('dp-end').textContent=fmtE(m>=1080?1560:m+480);}
@@ -392,10 +473,47 @@ function csGen(){
   csMsg=rep(MSG.cs_confirm,{DATE:fmtD(date),TIME:fmt(csS)});
   shPv('cs-pv',csMsg);g('cs-ac').style.display='flex';
 }
+function dupChk(data,date,ph,st){
+  var p=(ph||'').replace(/[^0-9]/g,'');
+  return data.some(function(r){return r.date===date&&(r.phone||'').replace(/[^0-9]/g,'')===p&&r.start===st;});
+}
+function dpOnly(){
+  var date=g('dp-date').value,ph=g('dp-ph').value;
+  if(!date){toast('날짜를 입력해주세요');return;}
+  if(dpS===null){toast('시작 시간을 선택해주세요');return;}
+  if(!ph){toast('고객 연락처를 입력해주세요');return;}
+  if(dupChk(dpD,date,ph,dpS)){toast('이미 저장된 예약이에요');return;}
+  dpSv=false;dpSave();
+}
+function mtOnly(){
+  var date=g('mt-date').value,ph=g('mt-ph').value,p=parseInt(g('mt-pp').value)||0,nm=g('mt-nm').value.trim();
+  if(!date){toast('날짜를 입력해주세요');return;}
+  if(mtS===null){toast('시작 시간을 선택해주세요');return;}
+  if(mtE===null){toast('종료 시간을 선택해주세요');return;}
+  if(!p){toast('이용 인원을 입력해주세요');return;}
+  if(!ph){toast('고객 연락처를 입력해주세요');return;}
+  var pn=ph.replace(/[^0-9]/g,'');
+  var ex=mtD.filter(function(r){return r.date===date&&(r.phone||'').replace(/[^0-9]/g,'')===pn&&r.start===mtS;})[0];
+  if(ex){
+    if(nm&&ex.name!==nm){ex.name=nm;localStorage.setItem('mw_mt',JSON.stringify(mtD));toast('이름이 업데이트됐어요');}
+    else toast('이미 저장된 예약이에요');
+    return;
+  }
+  mtSv=false;mtSave();
+}
+function csOnly(){
+  var date=g('cs-date').value,ph=g('cs-ph').value;
+  if(!date){toast('날짜를 입력해주세요');return;}
+  if(csS===null){toast('상담 시간을 선택해주세요');return;}
+  if(!ph){toast('고객 연락처를 입력해주세요');return;}
+  if(dupChk(csD,date,ph,csS)){toast('이미 저장된 예약이에요');return;}
+  csSv=false;csSave();
+}
+
 function shPv(id,msg){var e=g(id);e.textContent=msg;e.classList.add('on');}
 
 function dpSave(){if(dpSv)return;dpD.unshift({id:Date.now(),type:dpT,date:g('dp-date').value,start:dpS,end:dpGE(),phone:g('dp-ph').value,status:'pending',created:new Date().toISOString()});localStorage.setItem('mw_dp',JSON.stringify(dpD));dpSv=true;toast('예약 목록에 저장됐어요!');}
-function mtSave(){if(mtSv)return;var p=parseInt(g('mt-pp').value)||0;mtD.unshift({id:Date.now(),date:g('mt-date').value,start:mtS,end:mtE,people:p,phone:g('mt-ph').value,status:'pending',created:new Date().toISOString()});localStorage.setItem('mw_mt',JSON.stringify(mtD));mtSv=true;toast('예약 목록에 저장됐어요!');}
+function mtSave(){if(mtSv)return;var p=parseInt(g('mt-pp').value)||0;mtD.unshift({id:Date.now(),date:g('mt-date').value,start:mtS,end:mtE,people:p,phone:g('mt-ph').value,name:g('mt-nm').value,status:'pending',created:new Date().toISOString()});localStorage.setItem('mw_mt',JSON.stringify(mtD));mtSv=true;toast('예약 목록에 저장됐어요!');}
 function csSave(){if(csSv)return;csD.unshift({id:Date.now(),date:g('cs-date').value,start:csS,phone:g('cs-ph').value,status:'confirmed',created:new Date().toISOString()});localStorage.setItem('mw_cs',JSON.stringify(csD));csSv=true;toast('예약 목록에 저장됐어요!');}
 
 function doSms(inputId,cb){var ph=g(inputId).value.replace(/[^0-9]/g,'');if(!ph){toast('연락처를 입력해주세요');return;}if(cb)cb();window.location.href='sms:*77'+ph;}
@@ -408,7 +526,7 @@ function rDp(){
   w.innerHTML=dpD.map(function(r){
     var ds=fmtD(r.date),ts=r.start!=null?fmt(r.start)+' ~ '+fmtE(r.end):'';
     var bc,bt,ab;
-    if(r.status==='confirmed'){bc='bc';bt='✅ 확정완료';ab='';}
+    if(r.status==='confirmed'){bc='bc';bt='✅ 확정완료';ab='<button class="btn bb bs nx-b" data-k="dp" data-id="'+r.id+'">🧾 알바 공유용 복사</button>';}
     else if(r.status==='early'){bc='be';bt='📅 당일발송대기';ab='<button class="btn bg bs cf-b" data-m="dp" data-id="'+r.id+'">당일 입장안내 →</button>';}
     else{bc='bp';bt='⏳ 입금대기';ab='<button class="btn bg bs cf-b" data-m="dp" data-id="'+r.id+'">입금확인 →</button>';}
     return'<div class="rc '+r.status+'"><div class="rt"><span class="rb" style="background:var(--gs);color:var(--gr)">1일권('+r.type+')</span><span class="rb '+bc+'">'+bt+'</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+(r.phone||'연락처 미입력')+'</div><div class="rbs">'+ab+'<button class="btn bh bs dl-b" data-k="dp" data-id="'+r.id+'">삭제</button></div></div>';
@@ -421,10 +539,11 @@ function rMt(){
   w.innerHTML=mtD.map(function(r){
     var ds=fmtD(r.date),ts=r.start!=null?fmt(r.start)+' ~ '+fmt(r.end):'';
     var bc,bt,ab;
-    if(r.status==='confirmed'){bc='bc';bt='✅ 확정완료';ab='';}
-    else if(r.status==='early'){bc='be';bt='📅 당일발송대기';ab='<button class="btn bg bs cf-b" data-m="mt" data-id="'+r.id+'">당일 입장안내 →</button>';}
-    else{bc='bp';bt='⏳ 입금대기';ab='<button class="btn bg bs cf-b" data-m="mt" data-id="'+r.id+'">입금확인 →</button>';}
-    return'<div class="rc '+r.status+'"><div class="rt"><span class="rb" style="background:var(--gs);color:var(--gr)">미팅룸('+r.people+'인)</span><span class="rb '+bc+'">'+bt+'</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+(r.phone||'연락처 미입력')+'</div><div class="rbs">'+ab+'<button class="btn bh bs dl-b" data-k="mt" data-id="'+r.id+'">삭제</button></div></div>';
+    var pbb='<button class="btn bo bs pb-b" data-k="mt" data-id="'+r.id+'">📢 QR현황판 복사</button>';
+    if(r.status==='confirmed'){bc='bc';bt='✅ 확정완료';ab=pbb+'<button class="btn bb bs nx-b" data-k="mt" data-id="'+r.id+'">🧾 알바 공유용 복사</button>';}
+    else if(r.status==='early'){bc='be';bt='📅 당일발송대기';ab='<button class="btn bg bs cf-b" data-m="mt" data-id="'+r.id+'">당일 입장안내 →</button>'+pbb;}
+    else{bc='bp';bt='⏳ 입금대기';ab='<button class="btn bg bs cf-b" data-m="mt" data-id="'+r.id+'">입금확인 →</button>'+pbb;}
+    return'<div class="rc '+r.status+'"><div class="rt"><span class="rb" style="background:var(--gs);color:var(--gr)">미팅룸('+r.people+'인)</span><span class="rb '+bc+'">'+bt+'</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+((r.name?r.name+' · ':'')+(r.phone||'연락처 미입력'))+'</div><div class="rbs">'+ab+'<button class="btn bh bs dl-b" data-k="mt" data-id="'+r.id+'">삭제</button></div></div>';
   }).join('');
   bndL('mt-lw');
 }
@@ -433,7 +552,7 @@ function rCs(){
   if(!csD.length){w.innerHTML='<div class="emp">📋<br>저장된 예약이 없어요</div>';return;}
   w.innerHTML=csD.map(function(r){
     var ds=fmtD(r.date),ts=r.start!=null?fmt(r.start):'';
-    return'<div class="rc confirmed"><div class="rt"><span class="rb" style="background:rgba(108,99,255,.15);color:#a78bfa">💬 방문상담</span><span class="rb bc">✅ 확정</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+(r.phone||'연락처 미입력')+'</div><div class="rbs"><button class="btn bh bs dl-b" data-k="cs" data-id="'+r.id+'">삭제</button></div></div>';
+    return'<div class="rc confirmed"><div class="rt"><span class="rb" style="background:rgba(108,99,255,.15);color:#a78bfa">💬 방문상담</span><span class="rb bc">✅ 확정</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+(r.phone||'연락처 미입력')+'</div><div class="rbs"><button class="btn bo bs pb-b" data-k="cs" data-id="'+r.id+'">📢 QR현황판 복사</button><button class="btn bh bs dl-b" data-k="cs" data-id="'+r.id+'">삭제</button></div></div>';
   }).join('');
   bndL('cs-lw');
 }
@@ -441,9 +560,10 @@ function rAll(){
   dpD=JSON.parse(localStorage.getItem('mw_dp')||'[]');
   mtD=JSON.parse(localStorage.getItem('mw_mt')||'[]');
   csD=JSON.parse(localStorage.getItem('mw_cs')||'[]');
+  miD=JSON.parse(localStorage.getItem('mw_mi')||'[]');
   var all=[];
   dpD.forEach(function(r){var o=JSON.parse(JSON.stringify(r));o._k='dp';o._l='1일권('+r.type+')';o._c='var(--gr)';all.push(o);});
-  mtD.forEach(function(r){var o=JSON.parse(JSON.stringify(r));o._k='mt';o._l='미팅룸('+r.people+'인)';o._c='#60a5fa';all.push(o);});
+  mtD.forEach(function(r){var o=JSON.parse(JSON.stringify(r));o._k='mt';o._l='미팅룸 외부('+r.people+'인)';o._c='#60a5fa';all.push(o);});
   csD.forEach(function(r){var o=JSON.parse(JSON.stringify(r));o._k='cs';o._l='방문상담';o._c='#a78bfa';all.push(o);});
   all.sort(function(a,b){return new Date(a.date)-new Date(b.date);});
   var w=g('all-w');
@@ -452,23 +572,27 @@ function rAll(){
     var ds=fmtD(r.date),ts='';
     if(r._k==='dp'&&r.start!=null)ts=fmt(r.start)+' ~ '+fmtE(r.end);
     else if(r._k==='mt'&&r.start!=null)ts=fmt(r.start)+' ~ '+fmt(r.end);
+    else if(r._k==='mi'&&r.start!=null)ts=fmt(r.start)+' ~ '+fmt(r.end);
     else if(r._k==='cs'&&r.start!=null)ts=fmt(r.start);
     var bc=r.status==='confirmed'?'bc':r.status==='early'?'be':'bp';
     var bt=r.status==='confirmed'?'✅ 확정':r.status==='early'?'📅 당일발송대기':'⏳ 입금대기';
-    return'<div class="rc '+r.status+'"><div class="rt"><span class="rb" style="background:rgba(0,0,0,.3);color:'+r._c+'">'+r._l+'</span><span class="rb '+bc+'">'+bt+'</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+(r.phone||'연락처 미입력')+'</div></div>';
+    return'<div class="rc '+r.status+'"><div class="rt"><span class="rb" style="background:rgba(0,0,0,.3);color:'+r._c+'">'+r._l+'</span><span class="rb '+bc+'">'+bt+'</span></div><div class="rd">'+ds+' '+ts+'</div><div class="rm">'+(r._k==='mi'?(r.name||'이름 미입력'):(r.phone||'연락처 미입력'))+'</div></div>';
   }).join('');
 }
 function bndL(wid){
   var w=g(wid);
   w.onclick=function(e){
-    var cf=e.target.closest('.cf-b'),dl=e.target.closest('.dl-b');
+    var cf=e.target.closest('.cf-b'),dl=e.target.closest('.dl-b'),nx=e.target.closest('.nx-b'),pb=e.target.closest('.pb-b');
     if(cf)opCf(cf.dataset.m,parseInt(cf.dataset.id));
     if(dl)dlR(dl.dataset.k,parseInt(dl.dataset.id));
+    if(nx)nxOne(nx.dataset.k,parseInt(nx.dataset.id));
+    if(pb)pubOne(pb.dataset.k,parseInt(pb.dataset.id));
   };
 }
 function dlR(k,id){
   if(k==='dp'){dpD=dpD.filter(function(r){return r.id!==id;});localStorage.setItem('mw_dp',JSON.stringify(dpD));rDp();}
   else if(k==='mt'){mtD=mtD.filter(function(r){return r.id!==id;});localStorage.setItem('mw_mt',JSON.stringify(mtD));rMt();}
+  else if(k==='mi'){miD=miD.filter(function(r){return r.id!==id;});localStorage.setItem('mw_mi',JSON.stringify(miD));rMi();}
   else{csD=csD.filter(function(r){return r.id!==id;});localStorage.setItem('mw_cs',JSON.stringify(csD));rCs();}
 }
 
@@ -488,8 +612,8 @@ function todayChk(){
 function autoD(){
   var now=new Date();now.setHours(0,0,0,0);
   function cl(data,key){var b=data.length;data=data.filter(function(r){var d=new Date(r.date+'T00:00:00');d.setHours(0,0,0,0);return d>=now;});localStorage.setItem(key,JSON.stringify(data));return{d:data,n:b-data.length};}
-  var r1=cl(dpD,'mw_dp');dpD=r1.d;var r2=cl(mtD,'mw_mt');mtD=r2.d;var r3=cl(csD,'mw_cs');csD=r3.d;
-  var n=r1.n+r2.n+r3.n;if(n>0)toast('지난 예약 '+n+'건 자동 삭제됐어요');
+  var r1=cl(dpD,'mw_dp');dpD=r1.d;var r2=cl(mtD,'mw_mt');mtD=r2.d;var r3=cl(csD,'mw_cs');csD=r3.d;var r4=cl(miD,'mw_mi');miD=r4.d;
+  var n=r1.n+r2.n+r3.n+r4.n;if(n>0)toast('지난 예약 '+n+'건 자동 삭제됐어요');
 }
 
 function opCf(mode,id){
@@ -546,6 +670,169 @@ function cfGS(){
   r.status='confirmed';localStorage.setItem(cfM==='dp'?'mw_dp':'mw_mt',JSON.stringify(data));shCf();
 }
 function shCf(){g('cf-pv').textContent=cfMsg;g('cf-pv').classList.add('on');g('cf-ac').style.display='flex';if(cfM==='dp')rDp();else rMt();todayChk();}
+
+function nxAll(){
+  var all=[];
+  dpD.forEach(function(r){all.push({date:r.date,kind:'1일권('+r.type+')',start:r.start,end:r.end,ek:'dp',status:r.status});});
+  mtD.forEach(function(r){all.push({date:r.date,kind:'미팅룸 외부('+r.people+'인)',start:r.start,end:r.end,ek:'mt',status:r.status});});
+  all.sort(function(a,b){if(a.date!==b.date)return a.date<b.date?-1:1;return (a.start||0)-(b.start||0);});
+  return all;
+}
+function nxFil(){
+  var all=nxAll().filter(function(r){return r.status!=='pending';});
+  if(nxR==='all')return all;
+  var now=new Date();now.setHours(0,0,0,0);
+  if(nxR==='today'){
+    var ts=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+    return all.filter(function(r){return r.date===ts;});
+  }
+  var dow=now.getDay(),off=dow===0?6:dow-1;
+  var mon=new Date(now);mon.setDate(now.getDate()-off);
+  var sun=new Date(mon);sun.setDate(mon.getDate()+6);
+  var ms=mon.getFullYear()+'-'+pad(mon.getMonth()+1)+'-'+pad(mon.getDate());
+  var ss=sun.getFullYear()+'-'+pad(sun.getMonth()+1)+'-'+pad(sun.getDate());
+  return all.filter(function(r){return r.date>=ms&&r.date<=ss;});
+}
+function nxCnt(){var n=nxFil().length;g('nx-cnt').textContent='입금확인된 예약 '+n+'건';}
+function nxIc(s){return s==='confirmed'?'✅':s==='early'?'📅':'⏳';}
+function nxLine(r){
+  var ts='';
+  if(r.start!=null){
+    if(r.ek==='dp')ts=fmt(r.start)+'~'+fmtE(r.end);
+    else if(r.ek==='mt'||r.ek==='mi')ts=fmt(r.start)+'~'+fmt(r.end);
+    else ts=fmt(r.start);
+  }
+  return nxIc(r.status)+' '+nxD(r.date)+' / '+ts+' / '+r.kind;
+}
+function nxCp(){
+  var rows=nxFil();
+  if(!rows.length){toast('복사할 예약이 없어요');return;}
+  var lines=[],html=[],prev=null;
+  rows.forEach(function(r){
+    if(prev!==null&&r.date!==prev){lines.push('');html.push('<div><br></div>');}
+    var t=nxLine(r);lines.push(t);html.push('<div><b>'+esc(t)+'</b></div>');
+    prev=r.date;
+  });
+  richCp(html.join(''),lines.join('\n'),'✅ '+rows.length+'건 복사됐어요!');
+}
+
+function miPS(m){miS=m;document.querySelectorAll('#mi-stp .ts').forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.m)===m);});}
+function miPE(m){if(miS!==null&&m<=miS){toast('종료 시간이 시작보다 늦어야 해요');return;}miE=m;document.querySelectorAll('#mi-etp .ts').forEach(function(b){b.classList.toggle('on',parseInt(b.dataset.m)===m);});}
+function miOnly(){
+  var date=g('mi-date').value,nm=g('mi-nm').value.trim();
+  if(!date){toast('날짜를 입력해주세요');return;}
+  if(miS===null){toast('시작 시간을 선택해주세요');return;}
+  if(miE===null){toast('종료 시간을 선택해주세요');return;}
+  var ex=miD.filter(function(r){return r.date===date&&r.start===miS;})[0];
+  if(ex){
+    if(nm&&ex.name!==nm){ex.name=nm;localStorage.setItem('mw_mi',JSON.stringify(miD));toast('이름이 업데이트됐어요');}
+    else toast('이미 저장된 예약이에요');
+    return;
+  }
+  miD.unshift({id:Date.now(),date:date,start:miS,end:miE,name:nm,status:'confirmed',created:new Date().toISOString()});
+  localStorage.setItem('mw_mi',JSON.stringify(miD));
+  toast('예약목록에 저장됐어요!');
+}
+function rMi(){
+  var w=g('mi-lw');
+  if(!miD.length){w.innerHTML='<div class="emp">📋<br>저장된 예약이 없어요</div>';return;}
+  var s=miD.slice().sort(function(a,b){if(a.date!==b.date)return a.date<b.date?-1:1;return a.start-b.start;});
+  w.innerHTML=s.map(function(r){
+    return'<div class="rc confirmed"><div class="rt"><span class="rb" style="background:rgba(96,165,250,.15);color:#60a5fa">미팅룸(내부)</span><span class="rb bc">✅ 확정</span></div><div class="rd">'+fmtD(r.date)+' '+fmt(r.start)+' ~ '+fmt(r.end)+'</div><div class="rm">'+(r.name||'이름 미입력')+'</div><div class="rbs"><button class="btn bo bs pb-b" data-k="mi" data-id="'+r.id+'">📢 QR현황판 복사</button><button class="btn bh bs dl-b" data-k="mi" data-id="'+r.id+'">삭제</button></div></div>';
+  }).join('');
+  bndL('mi-lw');
+}
+function pubLine(r){
+  var head='✅️ '+fmtD(r.date)+' ';
+  if(r._t==='cs')return head+fmt(r.start)+' - '+fmt(r.start+30)+' 방문상담';
+  var nm=(r.name||'').trim();
+  var tail=nm?' '+nm+(r._t==='mi'?' 대표님':'님'):'';
+  if(r._t==='mt'&&r.people)tail+=' ('+r.people+'인)';
+  return head+fmt(r.start)+' - '+fmt(r.end)+tail;
+}
+function pubOne(k,id){
+  var src=k==='mi'?miD:k==='mt'?mtD:csD;
+  var f=src.filter(function(x){return x.id===id;})[0];if(!f)return;
+  var r=JSON.parse(JSON.stringify(f));r._t=k;
+  var t=pubLine(r);
+  richCp(esc(t),t,'📢 QR현황판 복사 완료!');
+}
+function pubAll(){
+  var now=new Date();now.setHours(0,0,0,0);
+  var ts=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+  var rows=[];
+  function add(data,t){data.forEach(function(x){if(x.date>=ts&&x.start!=null){var o=JSON.parse(JSON.stringify(x));o._t=t;rows.push(o);}});}
+  add(miD,'mi');add(mtD,'mt');add(csD,'cs');
+  rows.sort(function(a,b){if(a.date!==b.date)return a.date<b.date?-1:1;return a.start-b.start;});
+  if(!rows.length){toast('공지할 예약이 없어요');return;}
+  var lines=[],html=[],prev=null;
+  rows.forEach(function(r){
+    if(prev!==null&&r.date!==prev){lines.push('');html.push('<div><br></div>');}
+    var t=pubLine(r);lines.push(t);html.push('<div>'+esc(t)+'</div>');
+    prev=r.date;
+  });
+  richCp(html.join(''),lines.join('\n'),'📢 '+rows.length+'건 복사됐어요!');
+}
+
+function nowMin(){var d=new Date();return d.getHours()*60+d.getMinutes();}
+function isToday(v){var d=new Date();return v===d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function mkPast(pid,did){
+  var td=isToday(g(did).value),nm=nowMin();
+  document.querySelectorAll('#'+pid+' .ts').forEach(function(b){
+    if(b.dataset.ex)return;
+    var dis=td&&parseInt(b.dataset.m)<nm;
+    b.classList.toggle('dis',dis);
+    if(dis)b.classList.remove('on');
+  });
+}
+function refPast(){
+  mkPast('dp-tp','dp-date');
+  mkPast('mt-stp','mt-date');mkPast('mt-etp','mt-date');
+  mkPast('mi-stp','mi-date');mkPast('mi-etp','mi-date');
+  mkPast('cs-tp','cs-date');
+}
+function pastChk(did,m){
+  if(isToday(g(did).value)&&m<nowMin()){toast('이미 지난 시간이에요');return true;}
+  return false;
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function richCp(html,plain,msg){
+  var d=document.createElement('div');
+  d.contentEditable='true';
+  d.style.cssText='position:fixed;top:0;left:0;opacity:.01;font-size:16px;white-space:pre-wrap';
+  d.innerHTML=html;
+  document.body.appendChild(d);
+  var ok=false;
+  try{
+    var rg=document.createRange();rg.selectNodeContents(d);
+    var sel=window.getSelection();sel.removeAllRanges();sel.addRange(rg);
+    ok=document.execCommand('copy');
+    sel.removeAllRanges();
+  }catch(e){ok=false;}
+  document.body.removeChild(d);
+  if(ok){toast(msg);return;}
+  var ta=document.createElement('textarea');
+  ta.value=plain;ta.style.cssText='position:fixed;top:0;left:0;opacity:.01;font-size:16px';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');toast(msg);}catch(e2){toast('복사 실패 — 다시 시도해주세요');}
+  document.body.removeChild(ta);
+}
+function nxD(s){var d=new Date(s+'T00:00:00');var w=['일','월','화','수','목','금','토'][d.getDay()];return String(d.getFullYear()).slice(-2)+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'('+w+')';}
+function nxOne(k,id){
+  var em,ds,ts,lb;
+  if(k==='dp'){var r=dpD.filter(function(x){return x.id===id;})[0];if(!r)return;
+    em=r.status;ds=nxD(r.date);ts=r.start!=null?fmt(r.start)+'~'+fmtE(r.end):'';lb='1일권('+r.type+')';}
+  else if(k==='mt'){var m=mtD.filter(function(x){return x.id===id;})[0];if(!m)return;
+    em=m.status;ds=nxD(m.date);ts=m.start!=null?fmt(m.start)+'~'+fmt(m.end):'';lb='미팅룸('+m.people+'인)';}
+  else if(k==='mi'){var i=miD.filter(function(x){return x.id===id;})[0];if(!i)return;
+    em=i.status;ds=nxD(i.date);ts=fmt(i.start)+'~'+fmt(i.end);lb='미팅룸 내부'+(i.name?' '+i.name:'');}
+  else{var c=csD.filter(function(x){return x.id===id;})[0];if(!c)return;
+    em=c.status;ds=nxD(c.date);ts=c.start!=null?fmt(c.start):'';lb='방문상담';}
+  var ic=em==='confirmed'?'✅':em==='early'?'📅':'⏳';
+  var txt=ic+' '+ds+' / '+ts+' / '+lb;
+  richCp('<b>'+esc(txt)+'</b>',txt,'✅ 복사됐어요!');
+}
 
 function rPw(){g('pw9').textContent=p9||'미설정';g('pw8').textContent=p8||'미설정';}
 function opPw(a){epw=a;g('pw-ti').textContent='🔑 인증번호 '+a+' 비밀번호 변경';g('pw-in').value=a==='9999'?p9:p8;g('pw-ov').classList.add('show');setTimeout(function(){g('pw-in').focus();},100);}
