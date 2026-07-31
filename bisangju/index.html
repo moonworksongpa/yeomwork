@@ -1,1 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문워크스페이스 비상주 상담 메시지</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#3B82F6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="비상주 상담">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f5f5f5;min-height:100vh;display:flex;justify-content:center;padding:1rem 1rem 3rem}
+  .container{width:100%;max-width:480px}
+  .card{background:#fff;border-radius:16px;padding:1.25rem;box-shadow:0 1px 4px rgba(0,0,0,0.07);margin-bottom:12px}
+  .header-bar{background:#3B82F6;border-radius:12px;padding:11px 16px;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:2px}
+  .header-bar .main-title{font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.01em}
+  .header-bar .sub-title{font-size:11px;font-weight:500;color:#cde1ff;letter-spacing:0.03em}
+  .tabs{display:flex;border-bottom:1px solid #e8e8e8;margin-bottom:1.25rem}
+  .tab{flex:1;padding:10px 0;font-size:16px;font-weight:500;text-align:center;cursor:pointer;border:none;background:transparent;color:#aaa;border-bottom:2px solid transparent;margin-bottom:-1px}
+  .tab.active{color:#111;border-bottom:2px solid #111}
+  .section-label{font-size:11px;font-weight:600;color:#aaa;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px}
+  .pkg-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1rem}
+  .pkg-btn{padding:12px 8px;font-size:15px;font-weight:500;border:1px solid #e0e0e0;border-radius:10px;background:#fff;cursor:pointer;color:#888;text-align:center;transition:all .15s}
+  .pkg-btn span{font-size:13px;font-weight:400}
+  .pkg-btn.sel{background:#EBF3FF;color:#1a73e8;border-color:#a8c7fa}
+  .pkg-btn:active{transform:scale(0.97)}
+  .toggle-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1rem}
+  .toggle-btn{padding:10px 8px;font-size:14px;font-weight:500;border:1px solid #e0e0e0;border-radius:10px;background:#fff;cursor:pointer;color:#888;text-align:center;transition:all .15s}
+  .toggle-btn span{font-size:11px;font-weight:400}
+  .toggle-btn.sel-new{background:#E8F5E9;color:#2e7d32;border-color:#a5d6a7}
+  .toggle-btn.sel-renew{background:#FFF8E1;color:#f57f17;border-color:#ffe082}
+  .toggle-btn:active{transform:scale(0.97)}
+  .field-group{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+  .field-label{font-size:12px;color:#888}
+  input[type=text],input[type=date],input[type=number]{width:100%;font-size:15px;padding:10px 12px;border:1px solid #e0e0e0;border-radius:10px;background:#fff;color:#111;font-family:inherit;-webkit-appearance:none}
+  input:focus{outline:none;border-color:#1a73e8}
+  input[readonly]{background:#f8f8f8;color:#888}
+  .date-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .amt-info{font-size:14px;color:#8a6a4a;padding:10px 13px;background:#FFF6EC;border:1px solid #ffdcb8;border-radius:10px;margin-bottom:12px}
+  .amt-val{font-weight:700;color:#f97316}
+  .custom-block{border:1px solid #ebebeb;border-radius:10px;padding:12px;margin-bottom:12px;background:#f8f8f8}
+  .custom-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:8px}
+  .calc-preview{font-size:12px;color:#888;padding:7px 10px;background:#fff;border-radius:8px;border:1px solid #ebebeb}
+  .calc-val{font-weight:600;color:#111}
+  .deposit-box{padding:10px 13px;background:#E8F5E9;border:1px solid #c3e6c5;border-radius:10px;margin-bottom:12px;font-size:14px;color:#2e7d32}
+  .deposit-val{font-weight:600}
+  .divider{height:1px;background:#ebebeb;margin:1.25rem 0}
+  .preview-label{font-size:11px;font-weight:600;color:#aaa;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px}
+  .preview-box{background:#f8f8f8;border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.9;white-space:pre-wrap;color:#111;word-break:break-all;border:1px solid #ebebeb}
+  .copy-btn{margin-top:10px;width:100%;padding:14px;font-size:15px;font-weight:600;border:1px solid #e0e0e0;border-radius:12px;background:#fff;color:#111;cursor:pointer;transition:all .15s}
+  .copy-btn:active{transform:scale(0.98)}
+  .copy-btn.ok{color:#2e7d32;border-color:#a5d6a7;background:#E8F5E9}
+  .quick-title{font-size:14px;font-weight:600;color:#111;margin-bottom:3px}
+  .quick-desc{font-size:12px;color:#aaa;margin-bottom:14px}
+  .set-label{font-size:11px;font-weight:700;letter-spacing:0.05em;padding:0 2px;margin-bottom:5px;margin-top:14px;display:block}
+  .set-label:first-of-type{margin-top:0}
+  .set-label-blue{color:#1a73e8}
+  .set-label-green{color:#2e7d32}
+  .set-label-orange{color:#e65100}
+  .set-label-purple{color:#7b1fa2}
+  .set-label-teal{color:#00838f}
+  .quick-btn{width:100%;text-align:left;padding:12px 14px;margin-bottom:6px;border-radius:12px;cursor:pointer;transition:all .15s;display:flex;justify-content:space-between;align-items:center;gap:8px;border:none}
+  .quick-btn:last-of-type{margin-bottom:0}
+  .quick-btn:active{transform:scale(0.98);filter:brightness(0.96)}
+  .qb-left{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+  .qtag{font-size:10px;font-weight:700;letter-spacing:0.04em;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:2px;width:fit-content}
+  .qb-title{font-size:14px;font-weight:500}
+  .qb-copy{font-size:12px;white-space:nowrap;flex-shrink:0;font-weight:500}
+  .qset-blue{background:#EBF3FF;border:1px solid #c5daf9}
+  .qset-blue .qtag{background:#1a73e8;color:#fff}
+  .qset-blue .qb-title{color:#0d47a1}
+  .qset-blue .qb-copy{color:#5a9cf5}
+  .qset-blue.ok{background:#dbeafe;border-color:#93c5fd}
+  .qset-blue.ok .qb-copy{color:#1a73e8;font-weight:700}
+  .qset-green{background:#F1FBF4;border:1px solid #a5d6a7}
+  .qset-green .qtag{background:#2e7d32;color:#fff}
+  .qset-green .qb-title{color:#1b5e20}
+  .qset-green .qb-copy{color:#66bb6a}
+  .qset-green.ok{background:#dcfce7;border-color:#86efac}
+  .qset-green.ok .qb-copy{color:#2e7d32;font-weight:700}
+  .qset-orange{background:#FFF8F0;border:1px solid #ffcc80}
+  .qset-orange .qtag{background:#e65100;color:#fff}
+  .qset-orange .qb-title{color:#bf360c}
+  .qset-orange .qb-copy{color:#ffa726}
+  .qset-orange.ok{background:#ffedd5;border-color:#fdba74}
+  .qset-orange.ok .qb-copy{color:#e65100;font-weight:700}
+  .qset-purple{background:#F8F1FC;border:1px solid #d8b4e8}
+  .qset-purple .qtag{background:#7b1fa2;color:#fff}
+  .qset-purple .qb-title{color:#4a148c}
+  .qset-purple .qb-copy{color:#ab6fc4}
+  .qset-purple.ok{background:#f3e8ff;border-color:#c9a2df}
+  .qset-purple.ok .qb-copy{color:#7b1fa2;font-weight:700}
+  .qset-teal{background:#EEF9FA;border:1px solid #a5d9de}
+  .qset-teal .qtag{background:#00838f;color:#fff}
+  .qset-teal .qb-title{color:#00565e}
+  .qset-teal .qb-copy{color:#4bb3bd}
+  .qset-teal.ok{background:#d7f2f5;border-color:#7ec9d1}
+  .qset-teal.ok .qb-copy{color:#00838f;font-weight:700}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="header-bar">
+      <span class="main-title">비상주 상담 메시지</span>
+      <span class="sub-title">문워크스페이스 송파거여점</span>
+    </div>
+    <div class="tabs">
+      <button class="tab active" id="tab-personal" onclick="switchType('personal')">개인사업자</button>
+      <button class="tab" id="tab-corp" onclick="switchType('corp')">법인</button>
+    </div>
 
+    <div id="panel-personal">
+      <div class="section-label">계약 유형</div>
+      <div class="pkg-row">
+        <button class="pkg-btn sel" id="p_btn12" onclick="setPkg('personal','12')">12+1개월<br><span>264,000원</span></button>
+        <button class="pkg-btn" id="p_btn6" onclick="setPkg('personal','6')">6개월<br><span>132,000원</span></button>
+        <button class="pkg-btn" id="p_btncustom" onclick="setPkg('personal','custom')" style="grid-column:span 2">기타 (직접 입력)</button>
+      </div>
+      <div id="p_block-12" class="amt-info">이용료 <span class="amt-val">264,000원</span> (VAT포함) &nbsp;·&nbsp; 12+1개월 = 13개월 계약</div>
+      <div id="p_block-6" class="amt-info" style="display:none">이용료 <span class="amt-val">132,000원</span> (VAT포함) &nbsp;·&nbsp; 6개월 계약</div>
+      <div id="p_block-custom" class="custom-block" style="display:none">
+        <div class="custom-row">
+          <div class="field-group" style="margin-bottom:0"><span class="field-label">월 이용료 (★VAT포함, 원)</span><input type="number" id="p_monthly" placeholder="예: 22000" oninput="render()"></div>
+          <div class="field-group" style="margin-bottom:0"><span class="field-label">계약 개월 수</span><input type="number" id="p_months" placeholder="예: 3" min="1" oninput="render()"></div>
+        </div>
+        <div class="calc-preview" id="p_calc">월 이용료 × 개월수 = 총액</div>
+      </div>
+    </div>
+
+    <div id="panel-corp" style="display:none">
+      <div class="section-label">신규 / 연장</div>
+      <div class="toggle-row">
+        <button class="toggle-btn sel-new" id="c_btn_new" onclick="setCorpNew('new')">신규<br><span>보증금 포함</span></button>
+        <button class="toggle-btn" id="c_btn_renew" onclick="setCorpNew('renew')">연장·갱신<br><span>보증금 없음</span></button>
+      </div>
+      <div class="section-label">계약 유형</div>
+      <div class="pkg-row">
+        <button class="pkg-btn sel" id="c_btn12" onclick="setPkg('corp','12')">12개월<br><span>462,000원</span></button>
+        <button class="pkg-btn" id="c_btn6" onclick="setPkg('corp','6')">6개월<br><span>264,000원</span></button>
+        <button class="pkg-btn" id="c_btncustom" onclick="setPkg('corp','custom')" style="grid-column:span 2">기타 (직접 입력)</button>
+      </div>
+      <div id="c_block-12" class="amt-info">이용료 <span class="amt-val">462,000원</span> (VAT포함) &nbsp;·&nbsp; 12개월 계약</div>
+      <div id="c_block-6" class="amt-info" style="display:none">이용료 <span class="amt-val">264,000원</span> (VAT포함) &nbsp;·&nbsp; 6개월 계약</div>
+      <div id="c_block-custom" class="custom-block" style="display:none">
+        <div class="custom-row">
+          <div class="field-group" style="margin-bottom:0"><span class="field-label">월 이용료 (★VAT포함, 원)</span><input type="number" id="c_monthly" placeholder="예: 44000" oninput="render()"></div>
+          <div class="field-group" style="margin-bottom:0"><span class="field-label">계약 개월 수</span><input type="number" id="c_months" placeholder="예: 3" min="1" oninput="render()"></div>
+        </div>
+        <div class="calc-preview" id="c_calc">월 이용료 × 개월수 = 총액</div>
+      </div>
+      <div id="deposit-box" class="deposit-box">보증금 <span class="deposit-val">100,000원</span> &nbsp;+&nbsp; 이용료 = <span class="deposit-val" id="total-display">-</span> 총 입금</div>
+    </div>
+
+    <div class="field-group">
+      <span class="field-label">계약 시작일</span>
+      <input type="date" id="start_date" oninput="render()">
+    </div>
+    <div class="date-row">
+      <div class="field-group"><span class="field-label">계약 종료일 (자동)</span><input type="text" id="end_display" readonly></div>
+      <div class="field-group"><span class="field-label">계약기간 (자동)</span><input type="text" id="period_display" readonly></div>
+    </div>
+    <div class="divider"></div>
+    <div class="preview-label">미리보기</div>
+    <div class="preview-box" id="preview"></div>
+    <button class="copy-btn" id="copybtn" onclick="copyMain()">복사하기</button>
+  </div>
+
+  <div class="card">
+    <div class="quick-title">자주 쓰는 메시지</div>
+    <div class="quick-desc">탭하면 바로 복사돼요</div>
+    <div id="quick-list"></div>
+  </div>
+</div>
+
+<script>
+let type='personal',pPkg='12',cPkg='12',corpNew='new';
+const ACCT='우리은행 1005-485-002024\n염민주 문워크스페이스';
+const DEPOSIT=100000;
+const LABEL_MAP={blue:'입금 안내 전',green:'입금 확인 후',orange:'서명 완료 후',teal:'(신규) 사업자등록증 요청 및 감사인사',purple:'(재계약) 감사인사'};
+
+const QUICK={
+  personal:[
+    {color:'blue',step:'STEP 1',title:'비대면 계약 양식 안내',msg:
+`✅비대면 계약 안내드립니다
+아래 신청 양식을 채워 전달주시면
+계약서 작성하여 회신드리겠습니다
+
+📌계약 신청 양식
+- 성함/휴대폰번호:
+- 이메일주소:
+- 주민등록상 거주지:
+- 희망계약기간(6개월, 12개월 등):
+- 업종 및 업태:
+
+📎첨부 서류 
+- 신분증 앞면 사진
+- 사업자등록증(기존 사업자의 경우)
+
+* 전자서명을 위한 본인인증이 진행되오니, 휴대폰 번호를 비롯한 모든 정보는 계약자 명의의 것으로 작성해주세요 😊`},
+    {color:'green',step:'STEP 2',title:'계약서 발송 안내',msg:
+`대표님😊
+카카오톡과 이메일로 전자계약서 링크 보내드렸습니다. 
+본인인증 후 전자서명 진행해주시면 됩니다.`},
+    {color:'green',step:'STEP 3',title:'서명 전 필독사항',msg:
+`서명 전 계약 주요 사항 다시 한번 안내드립니다.
+
+✅ 계약 종료 2주 전 리마인드 드립니다. 그때까지 계약 연장 or 종료 의사를 밝혀주셔야 합니다. 
+
+연장을 원하실 경우 [갱신 계약료 입금]을, 종료를 원하실 경우 [폐업증명원 또는 이전한 사업자등록증을 제출]해주셔야 하며, 이행되지 않을 경우 계약은 [6개월 자동 연장]으로 간주돼 정상 이용료가 청구됩니다.
+
+✅ 해당 계약은 부동산 계약으로 중도 해지를 하시더라도 선입금된 이용료에 대한 환불은 어렵습니다.
+
+✅현금영수증 및 세금계산서 필요시 신청 부탁드립니다. 
+계약서에도 기재되어 있는 내용이니, 꼼꼼히 확인하시고 동의하실 경우 서명 부탁드리겠습니다. 😊`},
+    {color:'orange',step:'STEP 4',title:'계약서 다운로드 안내',msg:
+`계약 완료되셨구요! 
+'완료문서 보기'에서 우측 상단 '다운로드'를 누르시면 계약서와 전대차 동의서 파일을 받으실 수 있습니다.`},
+    {color:'orange',step:'STEP 5',title:'사업자등록시 유의사항',msg:
+`✅사업자등록 신청 시 유의해주세요!
+- 임대차 계약서 첨부란에 계약서 서명본과 전대차 동의서를 함께 제출하시면 됩니다
+- 임대인 정보에는 '염민주' (문워크스페이스 송파거여점 대표) 기재하시면 되며, 임대할 면적은 부여받으신 호실 (3XX호, 2.43제곱미터)로 기재 부탁드립니다
+
+✅사업자 등록이 완료되시면, 본 채팅방으로 새롭게 발급된 사업자등록증 첨부 부탁드립니다! 확인 후 지출증빙까지 도와드릴게요`},
+    {color:'teal',step:'STEP 6-1',title:'사업자등록증 요청',msg:
+`대표님 안녕하세요 문워크스페이스입니다😊
+사업자 등록증 잘 발급 받으셨나요?
+원활한 비상주 호실 관리를 위해
+사업자 등록증을 본 채팅방으로 보내주시면 감사하겠습니다
+PDF  파일이나 사진 파일 모두 가능합니다!`},
+    {color:'teal',step:'STEP 7',title:'신규 고객 감사인사',msg:
+`문워크와의 계약 다시 한번 감사드리며,
+사업 번창하시길 바라겠습니다 😊
+
+추후 문의사항 있으실 경우
+이쪽으로 연락주시면 빠르게 답변드리겠습니다 
+
++ 우편이나 등기, 택배 알람도 본 카톡채널로 드릴 예정입니다
+
+* 만족도 조사 시행 중입니다! 30초만 시간 내시어 평가해주시면 더 좋은 서비스 제공에 반영하겠습니다 
+https://naver.me/x67ocWU9`},
+    {color:'purple',step:'STEP 6-2',title:'재계약 고객 감사인사',msg:
+`저희 문워크스페이스 송파거여점과 소중한 인연 이어가주심에 감사드립니다😊
+앞으로도 편리한 비상주 서비스 이용하실 수 있도록 최선을 다하겠습니다!
+
+더불어, 비상주 재계약 고객을 대상으로 후기 이벤트를 진행 중입니다 🎁
+
+아래 네이버 링크에서 [고정석&비상주 이용 후기]를 예약 후, 소중한 후기 남겨주시면 1일권 (일반석/모니터석 택1) 무료 이용권을 지급해드리오니 많은 참여 부탁드립니다!
+👉https://naver.me/xzxD41aZ
+
+참여 완료 후 본 채팅방으로 알려주시면 바로 확인해드리겠습니다 🙏
+
+앞으로도 대표님의 사업이 번창하시길 응원하겠습니다 😊`}
+  ],
+  corp:[
+    {color:'blue',step:'STEP 1',title:'비대면 계약 양식 안내',msg:
+`✅비대면 계약 안내드립니다
+아래 신청 양식을 채워 전달주시면
+계약서 작성하여 회신드리겠습니다
+
+📌계약 신청 양식
+
+- 성함/휴대폰번호:
+- 이메일주소:
+- 신분증 앞면 사진:
+- 주민등록상 거주지:
+- 희망 계약 기간 (6개월, 12개월 등):
+- 업종 및 업태:
+- 보증금 환불 받으실 계좌:
+
+기존 법인 주소지 이전이시기 때문에
+
+- 법인 사업자등록증
+- 법인 인감증명서
+- 법인 등기부등본
+
+함께 첨부 부탁드립니다`},
+    {color:'green',step:'STEP 2',title:'계약서 발송 안내',msg:
+`대표님😊
+카카오톡과 이메일로 전자계약서 링크 보내드렸습니다. 
+대표자 본인인증 후, 안내에 따라 ★법인 인감★으로 날인 부탁드립니다. (개인 도장 X)`},
+    {color:'green',step:'STEP 3',title:'날인 전 필독사항',msg:
+`날인 전 계약 주요 사항 다시 한번 안내드립니다.
+
+✅ 계약 종료 1달 전 리마인드 드립니다. 이때 계약 연장 or 종료 의사를 밝혀주셔야 합니다.
+
+✅ 연장을 원하실 경우 만료일 전까지 [갱신 계약료] 입금을 해주셔야 합니다.
+
+✅ 종료를 원하실 경우 아래 [2가지 서류를 모두 제출]해주셔야 합니다.
+1) 폐업증명원 또는 주소 이전된 사업자등록증
+2) 본점 주소가 이전되거나 말소된 법인등기부 등본
+주의: 법인이 *폐업*하더라도 등기부상 주소지 정리가 안 된 경우 서비스 이용 유지로 간주되어 서류 제출까지 1개월 단위로 정상요금(월 77,000원)이 청구됩니다.
+
+✅ 본 계약은 부동산 계약으로 중도 해지 시 선입금된 이용료 환불은 어렵습니다.
+계약서에도 기재되어 있는 내용이니, 꼼꼼히 확인하시고 동의하실 경우 서명 부탁드립니다. 😊`},
+    {color:'orange',step:'STEP 4',title:'계약서 다운로드 안내',msg:
+`계약 완료되셨구요! 
+'완료문서 보기'에서 우측 상단 '다운로드'를 누르시면 계약서와 전대차 동의서 파일을 받으실 수 있습니다.`},
+    {color:'orange',step:'STEP 5',title:'사업자등록시 유의사항',msg:
+`✅사업자등록 신청 시 유의해주세요!
+- 임대차 계약서 첨부란에 계약서 서명본과 전대차 동의서를 함께 제출하시면 됩니다
+- 임대인 정보에는 '염민주' (문워크스페이스 송파거여점 대표) 기재하시면 되며, 임대할 면적은 부여받으신 호실 (3XX호, 2.43제곱미터)로 기재 부탁드립니다
+
+✅본 채팅방으로 새롭게 발급된 사업자등록증과 법인등기부등본 첨부 부탁드립니다! 확인 후 지출증빙까지 도와드릴게요`}
+  ]
+};
+
+function renderQuick(){
+  const list=QUICK[type];
+  let html='',lastColor='';
+  list.forEach((q,i)=>{
+    if(q.color!==lastColor){
+      html+=`<span class="set-label set-label-${q.color}">${LABEL_MAP[q.color]}</span>`;
+      lastColor=q.color;
+    }
+    html+=`<button class="quick-btn qset-${q.color}" id="qbtn${i}" onclick="copyQuick(${i})">
+      <div class="qb-left"><span class="qtag">${q.step}</span><span class="qb-title">${q.title}</span></div>
+      <span class="qb-copy" id="qlabel${i}">복사</span>
+    </button>`;
+  });
+  document.getElementById('quick-list').innerHTML=html;
+}
+
+function switchType(t){
+  type=t;
+  ['personal','corp'].forEach(k=>{
+    document.getElementById('tab-'+k).classList.toggle('active',k===t);
+    document.getElementById('panel-'+k).style.display=k===t?'':'none';
+  });
+  render();renderQuick();
+}
+
+function setPkg(t,p){
+  if(t==='personal')pPkg=p;else cPkg=p;
+  const px=t==='personal'?'p':'c';
+  ['12','6','custom'].forEach(k=>{
+    document.getElementById(px+'_btn'+k).classList.toggle('sel',k===p);
+    const bl=document.getElementById(px+'_block-'+k);
+    if(bl)bl.style.display=k===p?'':'none';
+  });
+  render();
+}
+
+function setCorpNew(v){
+  corpNew=v;
+  document.getElementById('c_btn_new').className='toggle-btn'+(v==='new'?' sel-new':'');
+  document.getElementById('c_btn_renew').className='toggle-btn'+(v==='renew'?' sel-renew':'');
+  document.getElementById('deposit-box').style.display=v==='new'?'':'none';
+  render();
+}
+
+function fmtKo(s){
+  if(!s)return'';
+  const[y,m,d]=s.split('-');
+  return`${y}년 ${parseInt(m)}월 ${parseInt(d)}일`;
+}
+
+function calcEnd(s,months){
+  if(!s||!months)return'';
+  const[y,m,d]=s.split('-').map(Number);
+  let ey=y,em=m+months;
+  while(em>12){em-=12;ey++;}
+  let ed=d-1;
+  if(ed===0){em--;if(em===0){em=12;ey--;}ed=new Date(ey,em,0).getDate();}
+  return`${ey}-${String(em).padStart(2,'0')}-${String(ed).padStart(2,'0')}`;
+}
+
+function render(){
+  const start=document.getElementById('start_date').value;
+  let months=0,amt=0,pkgLine='',periodLabel='';
+  if(type==='personal'){
+    if(pPkg==='12'){months=13;amt=264000;pkgLine='개인사업자 비상주 12+1개월 이용료';periodLabel='13개월';}
+    else if(pPkg==='6'){months=6;amt=132000;pkgLine='개인사업자 비상주 6개월 이용료';periodLabel='6개월';}
+    else{
+      const mo=parseInt(document.getElementById('p_monthly').value)||0;
+      months=parseInt(document.getElementById('p_months').value)||0;
+      amt=mo*months;periodLabel=months?months+'개월':'';
+      pkgLine=months?`개인사업자 비상주 ${months}개월 이용료`:'개인사업자 비상주 이용료';
+      const el=document.getElementById('p_calc');
+      el.innerHTML=mo&&months?`${mo.toLocaleString('ko-KR')}원 × ${months}개월 = <span class="calc-val">${amt.toLocaleString('ko-KR')}원</span>`:'월 이용료 × 개월수 = 총액';
+    }
+  }else{
+    if(cPkg==='12'){months=12;amt=462000;pkgLine='법인사업자 비상주 12개월 이용료';periodLabel='12개월';}
+    else if(cPkg==='6'){months=6;amt=264000;pkgLine='법인사업자 비상주 6개월 이용료';periodLabel='6개월';}
+    else{
+      const mo=parseInt(document.getElementById('c_monthly').value)||0;
+      months=parseInt(document.getElementById('c_months').value)||0;
+      amt=mo*months;periodLabel=months?months+'개월':'';
+      pkgLine=months?`법인사업자 비상주 ${months}개월 이용료`:'법인사업자 비상주 이용료';
+      const el=document.getElementById('c_calc');
+      el.innerHTML=mo&&months?`${mo.toLocaleString('ko-KR')}원 × ${months}개월 = <span class="calc-val">${amt.toLocaleString('ko-KR')}원</span>`:'월 이용료 × 개월수 = 총액';
+    }
+    const total=amt+(corpNew==='new'?DEPOSIT:0);
+    document.getElementById('total-display').textContent=total.toLocaleString('ko-KR')+'원';
+  }
+  const endStr=start&&months?calcEnd(start,months):'';
+  document.getElementById('end_display').value=endStr?fmtKo(endStr):'-';
+  document.getElementById('period_display').value=periodLabel||'-';
+  const periodLine=(start&&endStr&&periodLabel)?`${fmtKo(start)} – ${fmtKo(endStr)} (${periodLabel})`:'시작일을 선택해주세요';
+  const amtFmt=amt?amt.toLocaleString('ko-KR')+'원 (VAT포함)':'금액을 입력해주세요';
+  let dep='';
+  if(type==='corp'&&corpNew==='new'){const t=amt+DEPOSIT;dep=`\n\n보증금= 100,000원\n\n★총 입금 주실 금액= ${t.toLocaleString('ko-KR')}원`;}
+  document.getElementById('preview').textContent=
+`[이용금액 안내]
+${pkgLine}
+= ${amtFmt}${dep}
+
+[입금계좌]
+${ACCT}
+
+[계약기간]
+${periodLine}
+** 세금계산서 및 현금영수증 가능
+
+대표님 계약내용 확인하시고 입금 부탁드립니다 😊
+입금이 확인되면,  계약서 빠르게 전달드리겠습니다`;
+}
+
+function keepBlank(t){return t.replace(/^[ \t]*$/gm,'\u200B');}
+
+function copyText(text,onSuccess){
+  text=keepBlank(text);
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(onSuccess).catch(()=>fallbackCopy(text,onSuccess));
+  }else{fallbackCopy(text,onSuccess);}
+}
+
+function fallbackCopy(text,onSuccess){
+  const ta=document.createElement('textarea');
+  ta.value=text;
+  ta.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';
+  document.body.appendChild(ta);
+  ta.focus();ta.select();
+  try{document.execCommand('copy');onSuccess();}catch(e){}
+  document.body.removeChild(ta);
+}
+
+function copyMain(){
+  copyText(document.getElementById('preview').textContent,()=>{
+    const b=document.getElementById('copybtn');
+    b.textContent='복사됨!';b.classList.add('ok');
+    setTimeout(()=>{b.textContent='복사하기';b.classList.remove('ok');},1800);
+  });
+}
+
+function copyQuick(i){
+  copyText(QUICK[type][i].msg,()=>{
+    const b=document.getElementById('qbtn'+i),l=document.getElementById('qlabel'+i);
+    b.classList.add('ok');l.textContent='복사됨!';
+    setTimeout(()=>{b.classList.remove('ok');l.textContent='복사';},1800);
+  });
+}
+
+document.getElementById('start_date').value=new Date().toISOString().slice(0,10);
+render();renderQuick();
+</script>
+</body>
+</html>
