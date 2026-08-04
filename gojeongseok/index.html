@@ -1,1 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문워크스페이스 고정석 상담 메시지</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#E69150">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="고정석 상담">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f5f5f5;min-height:100vh;display:flex;justify-content:center;padding:1rem 1rem 3rem}
+  .wrap{width:100%;max-width:520px}
+  .header-bar{background:#E69150;border-radius:12px;padding:11px 16px;margin-bottom:1.25rem;display:flex;flex-direction:column;gap:2px}
+  .header-bar .main-title{font-size:19px;font-weight:700;color:#fff;letter-spacing:-0.01em}
+  .header-bar .sub-title{font-size:11px;font-weight:500;color:#ffe7d5;letter-spacing:0.03em}
+  .card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .cl{font-size:11px;font-weight:700;color:#999;letter-spacing:.04em;margin-bottom:12px}
+  .fl{margin-bottom:12px}
+  .fl:last-child{margin-bottom:0}
+  .fl label{display:block;font-size:12px;font-weight:600;color:#777;margin-bottom:6px}
+  .fl input,.fl select{width:100%;padding:11px 12px;border:1px solid #e2e2e2;border-radius:9px;font-family:inherit;font-size:14px;background:#fff;color:#222}
+  .fl input:focus,.fl select:focus{outline:none;border-color:#E69150}
+  .row{display:flex;gap:8px}
+  .row .fl{flex:1}
+  .seg{display:flex;gap:6px;flex-wrap:wrap}
+  .sg{flex:1;min-width:64px;text-align:center;padding:9px 6px;border:1px solid #e2e2e2;border-radius:9px;font-size:13px;font-weight:600;color:#777;cursor:pointer;background:#fff;user-select:none}
+  .sg.on{background:#FFF3E8;border-color:#E69150;color:#c76f2e}
+  .sg.on.fix{background:#EAF2FD;border-color:#4a86d6;color:#1c5aa8}
+  .sg.on.free{background:#FDEEF4;border-color:#dc6d9c;color:#b03d70}
+  .sg.on.neu{background:#EEF1F5;border-color:#7b8a9c;color:#4a5766}
+  #seat-seg .sg{min-width:calc(50% - 3px);flex:0 0 calc(50% - 3px)}
+  .amt-info{font-size:14px;color:#8a6a4a;padding:10px 13px;background:#FFF6EC;border:1px solid #ffdcb8;border-radius:10px;margin-bottom:12px}
+  .amt-val{font-weight:700;color:#f97316}
+  .dep-box{padding:10px 13px;background:#E8F5E9;border:1px solid #c3e6c5;border-radius:10px;margin-bottom:12px;font-size:14px;color:#2e7d32}
+  .pv{background:#fafafa;border:1px solid #ececec;border-radius:10px;padding:14px;font-size:13px;line-height:1.75;white-space:pre-wrap;color:#333;margin-bottom:10px;word-break:break-all}
+  .btn{width:100%;padding:12px;border:1px solid transparent;border-radius:10px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+  .btn:active{opacity:.8}
+  .bg{background:#E69150;color:#fff}
+  .bh{background:#f2f2f2;color:#444;border:1px solid #e2e2e2}
+  .btn.ok{background:#2e7d32;color:#fff}
+  .set-label{font-size:11px;font-weight:700;letter-spacing:.03em;margin:18px 0 8px;padding-left:2px}
+  .set-label-blue{color:#1565c0}
+  .set-label-green{color:#2e7d32}
+  .set-label-orange{color:#e65100}
+  .set-label-purple{color:#7b1fa2}
+  .set-label-red{color:#c2185b}
+  .qset-red{background:#FDF0F4;border:1px solid #f2c6d5}
+  .qset-red .qtag{background:#d6446f;color:#fff}
+  .qset-red .qb-title{color:#a01d47}
+  .qset-red .qb-copy{color:#dd91a8}
+  .qset-red.ok{background:#fbdde6;border-color:#e8a5bb}
+  .qset-red.ok .qb-copy{color:#c2185b;font-weight:700}
+  .set-label-brown{color:#4e342e}
+  .qset-brown{background:#F0E8E3;border:1px solid #c9b5aa}
+  .qset-brown .qtag{background:#4e342e;color:#fff}
+  .qset-brown .qb-title{color:#3b2620}
+  .qset-brown .qb-copy{color:#8d6e63}
+  .qset-brown.ok{background:#e0d0c6;border-color:#ab8d80}
+  .qset-brown.ok .qb-copy{color:#4e342e;font-weight:700}
+  .grp-div{height:1px;background:#ddd;margin:26px 0 4px;position:relative}
+  .grp-div::after{content:'';position:absolute;left:0;right:0;top:3px;height:1px;background:#ddd}
+  .qset{border-radius:12px;padding:12px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  .qtag{font-size:10px;font-weight:700;padding:4px 7px;border-radius:6px;white-space:nowrap}
+  .qb-title{font-size:13px;font-weight:700;flex:1}
+  .qb-copy{font-size:12px;font-weight:600;white-space:nowrap}
+  .qset-blue{background:#EEF4FC;border:1px solid #c5d9f0}
+  .qset-blue .qtag{background:#1565c0;color:#fff}
+  .qset-blue .qb-title{color:#0d3c75}
+  .qset-blue .qb-copy{color:#6f9dd0}
+  .qset-blue.ok{background:#dceafb;border-color:#9dc0e8}
+  .qset-blue.ok .qb-copy{color:#1565c0;font-weight:700}
+  .qset-green{background:#EFF8F0;border:1px solid #bfdfc2}
+  .qset-green .qtag{background:#2e7d32;color:#fff}
+  .qset-green .qb-title{color:#1b5e20}
+  .qset-green .qb-copy{color:#7bb37f}
+  .qset-green.ok{background:#dcf0dd;border-color:#9dcaa1}
+  .qset-green.ok .qb-copy{color:#2e7d32;font-weight:700}
+  .qset-orange{background:#FFF6EC;border:1px solid #ffdcb8}
+  .qset-orange .qtag{background:#e65100;color:#fff}
+  .qset-orange .qb-title{color:#8a3d00}
+  .qset-orange .qb-copy{color:#d99a63}
+  .qset-orange.ok{background:#ffe9d3;border-color:#ffc891}
+  .qset-orange.ok .qb-copy{color:#e65100;font-weight:700}
+  .qset-purple{background:#F8F1FC;border:1px solid #d8b4e8}
+  .qset-purple .qtag{background:#7b1fa2;color:#fff}
+  .qset-purple .qb-title{color:#4a148c}
+  .qset-purple .qb-copy{color:#ab6fc4}
+  .qset-purple.ok{background:#f3e8ff;border-color:#c9a2df}
+  .qset-purple.ok .qb-copy{color:#7b1fa2;font-weight:700}
+  .hint{font-size:11px;color:#aaa;line-height:1.7;margin-top:8px}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:#333;color:#fff;padding:11px 20px;border-radius:22px;font-size:13px;font-weight:600;opacity:0;transition:.25s;z-index:99}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header-bar">
+    <div class="main-title">고정석 상담 메시지</div>
+    <div class="sub-title">MOONWORKSPACE SONGPA</div>
+  </div>
 
+  <div class="card">
+    <div class="cl">좌석 유형</div>
+    <div class="seg" id="seat-seg">
+      <div class="sg on fix" data-s="오피스존 고정석" data-c="fix" data-dep="100000">오피스존 고정석</div>
+      <div class="sg fix" data-s="프라이빗존 고정석" data-c="fix" data-dep="100000">프라이빗존 고정석</div>
+      <div class="sg free" data-s="주간 자유석" data-c="free" data-dep="50000">주간 자유석</div>
+      <div class="sg free" data-s="야간 자유석" data-c="free" data-dep="50000">야간 자유석</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cl">이용료</div>
+    <div class="fl"><label>결제 방식</label>
+      <div class="seg" id="vat-seg">
+        <div class="sg on neu" data-v="incl">부가세 포함</div>
+        <div class="sg neu" data-v="cash">현금가</div>
+      </div>
+    </div>
+    <div class="fl" id="f-net"><label id="l-net">월 이용료 (부가세 전)</label>
+      <input type="number" id="net" placeholder="ex)  230000" inputmode="decimal"></div>
+    <div class="fl" id="f-mon"><label id="l-mon">월 이용료 (부가세 포함)</label>
+      <input type="number" id="monthly" placeholder="ex)  253000" inputmode="decimal"></div>
+    <div class="fl"><label id="l-total">총 이용료 (부가세 포함)</label>
+      <input type="number" id="total" placeholder="ex)  759000" inputmode="decimal"></div>
+    <p class="hint">어느 칸에 입력해도 나머지가 자동 계산돼요. 안내문자에는 총 이용료만 나갑니다.</p>
+  </div>
+
+  <div class="card">
+    <div class="cl">계약 기간</div>
+    <div class="fl"><label>시작일</label><input type="date" id="start"></div>
+    <div class="row">
+      <div class="fl"><label>개월</label><input type="number" id="months" placeholder="3" inputmode="numeric"></div>
+      <div class="fl"><label>추가 일수</label><input type="number" id="days" placeholder="0" inputmode="numeric"></div>
+    </div>
+    <div class="fl"><label>종료일 <span style="color:#E69150;font-size:10px">직접 바꾸면 기간이 다시 계산돼요</span></label>
+      <input type="date" id="end"></div>
+  </div>
+
+  <div class="amt-info" id="amt">이용료를 입력해주세요</div>
+  <div class="dep-box" id="dep">예치금 100,000원 (퇴실 시 환급)</div>
+
+  <div class="card">
+    <div class="cl">계약 안내 메시지</div>
+    <div class="pv" id="pv">정보를 입력하면 메시지가 만들어집니다</div>
+    <button class="btn bg" id="cp">📋 메시지 복사</button>
+  </div>
+
+  <div id="quick"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var DEPOSIT=100000;
+var vat='incl';
+var seat='오피스존 고정석';
+var deposit=100000;
+
+
+var MSG={
+  contract:
+"대표님 계약 안내 드립니다 😊\n이용료 확인하시고, 아래 필요 정보 기입해서 답장 부탁드립니다\n\n"+
+"[이용료 안내]\n{SEAT} {FEEPERIOD}: {TOTAL}{VATTAG}\n예치금: {DEPOSIT} (퇴실시 환급예정)\n\n"+
+"[예치금 입금 계좌]\n우리은행 1005-485-002024\n염민주 문워크스페이스\n\n"+
+"[계약기간]\n{RANGE} ({PERIOD})\n\n"+
+"[필요 정보]\n-성함/휴대폰번호:\n-거주지(동까지):\n-생년월일:\n-예치금 환급 계좌번호:",
+  welcome:
+"저희 문워크스페이스와\n소중한 인연 맺어주셔서 감사합니다 😊\n\n"+
+"아래 링크는 고정석 및 자유석 이용에\n도움이 되실만한 가이드입니다 ⬇️\n"+
+"https://litt.ly/moonwork3_member\n\n"+
+"편안한 업무 공간 제공해드릴 수 있도록 최선을 다하겠습니다 💕",
+  openchat:
+"같은 공간을 쉐어하며 지내는 만큼\n[공지사항 전달과 입주사 간 소통]을 위해 문워크 송파 단체 카톡방을 만들었습니다\n\n"+
+"🔗 https://open.kakao.com/o/gfJwo5yh\n\n"+
+"🔒참여코드 : 2024\n\n"+
+"공유오피스 이용에 관한 안내 사항 위주로 전달되니, 부담갖지 마시고 꼭 입장 부탁드려요☺️",
+  renew:
+"저희 문워크스페이스와\n소중한 인연 이어가주셔서\n진심으로 감사드립니다 😊\n\n"+
+"계속해서 편안한 업무 공간 제공해드릴 수 있도록 최선을 다하겠습니다 💕\n\n"+
+"궁금증이나 불편 사항 있으실 경우\n본 채팅방으로 언제든 연락주세요!",
+  end_fix:
+"[계약 만료 알림]\n안녕하세요 대표님 문워크 스페이스 송파거여점입니다.\n고정석 계약 기간 만료일(0/00)이 다가와 리마인드 드립니다. \n\n"+
+"[계약 갱신 or 종료 여부 회신] 부탁드리겠습니다\n*계약 종료를 원하실 경우, 만료일까지 자리 정돈을 부탁드리며 이후에도 개인 물품 정리가 되지 않을 경우 점거 일수만큼 이용료가 청구되는점 유의 바랍니다.  \n\n"+
+"오늘도 좋은 하루 되세요😊",
+  end_free:
+"[계약 만료 알림] \n안녕하세요 대표님 문워크 스페이스 송파거여점입니다. \n자유석 계약 기간 만료일(0/00)이 다가와 리마인드 드립니다.\n\n"+
+"[계약 갱신 or 종료 여부 회신] 부탁드리겠습니다. \n\n"+
+"오늘도 좋은 하루 되세요😊",
+  end_docs:
+"[계약 만료 알림]\n안녕하세요 대표님 문워크 스페이스입니다.\n고정석 계약 기간 만료일(0/00)이 1주일 남아 리마인드 드립니다.\n이용종료 의사를 밝혀주셨습니다. \n\n"+
+"만료일까지 좌석 정리 및 'OOO'의 사업자등록 이전 또는 폐업 증빙 서류 제출이 필요한 점 다시 한번 안내드립니다. \n\n"+
+"오늘도 좋은 하루 되세요😊\n\n"+
+"-문워크 스페이스 송파거여점",
+  end_fixbiz:
+"[계약 만료 알림]\n안녕하세요 대표님 문워크 스페이스입니다\n고정석 계약 기간 만료일(0/00)이 2주 남아 리마인드 드립니다\n\n"+
+"[계약 갱신 or 종료 여부 회신] 부탁드리겠습니다\n*계약 종료를 원하실 경우, 만료일 전까지 좌석 정리 및 사업자등록주소 이전이 필요합니다*\n\n \n"+
+"오늘도 좋은 하루 되세요😊\n\n"+
+"-문워크 스페이스 송파거여점"
+};
+
+var QUICK=[
+  {color:'blue',step:'STEP 1',title:'계약 안내',key:'contract'},
+  {color:'green',step:'STEP 2',title:'환영 인사 · 이용 가이드',key:'welcome'},
+  {color:'green',step:'STEP 3',title:'단체 카톡방 안내',key:'openchat'},
+  {color:'purple',step:'STEP 2-2',title:'연장시 감사인사',key:'renew'},
+  {color:'red',step:'STEP 1-1',title:'고정석 계약 만료',key:'end_fix',divider:true},
+  {color:'red',step:'STEP 1-2',title:'고정석&비상주 계약 만료',key:'end_fixbiz'},
+  {color:'red',step:'STEP 1-3',title:'자유석 계약 만료',key:'end_free'},
+  {color:'brown',step:'STEP 2',title:'종료 서류 제출 안내',key:'end_docs'}
+];
+
+function g(id){return document.getElementById(id);}
+function toast(t){var e=g('toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on');},1900);}
+function keepBlank(t){return t.replace(/^[ \t]*$/gm,'\u200B');}
+function won(n){return Number(n).toLocaleString('ko-KR',{maximumFractionDigits:2})+'원';}
+function pad2(n){return String(n).padStart(2,'0');}
+
+function toDate(s){if(!s)return null;var p=s.split('-').map(Number);return new Date(p[0],p[1]-1,p[2]);}
+function toStr(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
+function kDate(s){var d=toDate(s);if(!d)return'';return d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일';}
+
+// 시작일 + N개월 + M일 - 1일
+function addPeriod(startStr,months,days){
+  var d=toDate(startStr);if(!d)return null;
+  var y=d.getFullYear(),m=d.getMonth(),day=d.getDate();
+  var ty=y,tm=m+months;
+  ty+=Math.floor(tm/12);tm=((tm%12)+12)%12;
+  var last=new Date(ty,tm+1,0).getDate();
+  var e=new Date(ty,tm,Math.min(day,last));
+  e.setDate(e.getDate()+days-1);
+  return e;
+}
+// 시작일~종료일 -> 개월/일수 역산
+function diffPeriod(startStr,endStr){
+  var s=toDate(startStr),e=toDate(endStr);
+  if(!s||!e||e<s)return null;
+  var months=0;
+  while(true){
+    var t=addPeriod(startStr,months+1,0);
+    if(t&&t<=e)months++;else break;
+    if(months>600)break;
+  }
+  var base=addPeriod(startStr,months,0);
+  var days=base?Math.round((e-base)/86400000):0;
+  return{months:months,days:days};
+}
+function periodLabel(months,days){
+  var p=[];
+  if(months)p.push(months+'개월');
+  if(days)p.push(days%7===0?(days/7)+'주':days+'일');
+  return p.length?p.join(' '):'';
+}
+
+var anchor='monthly';
+function num(id){var v=parseFloat(g(id).value);return isFinite(v)?v:0;}
+function put(id,v){g(id).value=v?String(Math.round(v*100)/100):'';}
+
+function recalc(){
+  var months=parseInt(g('months').value)||0;
+  var net=num('net'),mon=num('monthly'),tot=num('total');
+  if(vat==='incl'){
+    if(anchor==='net'&&net){mon=net*1.1;put('monthly',mon);put('total',months?mon*months:0);}
+    else if(anchor==='monthly'&&mon){put('net',mon/1.1);put('total',months?mon*months:0);}
+    else if(anchor==='total'&&tot){mon=months?tot/months:0;put('monthly',mon);put('net',mon/1.1);}
+  }else{
+    if(anchor==='total'&&tot){put('monthly',months?tot/months:0);}
+    else if(mon){put('total',months?mon*months:0);}
+    g('net').value='';
+  }
+  render();
+}
+
+function applyMode(){
+  var incl=vat==='incl';
+  g('f-net').style.display=incl?'block':'none';
+  g('l-mon').textContent=incl?'월 이용료 (부가세 포함)':'월 이용료 (부가세X)';
+  g('l-total').textContent=incl?'총 이용료 (부가세 포함)':'총 이용료 (현금가/부가세X)';
+  if(!incl){g('net').value='';if(anchor==='net')anchor='monthly';}
+  recalc();
+}
+
+var lock=false;
+function syncFromPeriod(){
+  if(lock)return;lock=true;
+  var s=g('start').value,months=parseInt(g('months').value)||0,days=parseInt(g('days').value)||0;
+  if(s&&(months||days)){
+    var e=addPeriod(s,months,days);
+    if(e)g('end').value=toStr(e);
+  }
+  lock=false;render();
+}
+function syncFromEnd(){
+  if(lock)return;lock=true;
+  var s=g('start').value,en=g('end').value;
+  if(s&&en){
+    var r=diffPeriod(s,en);
+    if(r){g('months').value=r.months||'';g('days').value=r.days||'';}
+  }
+  lock=false;render();
+}
+function render(){
+  var mo=parseInt(g('monthly').value)||0;
+  var months=parseInt(g('months').value)||0;
+  var days=parseInt(g('days').value)||0;
+  var s=g('start').value,en=g('end').value;
+  var total=parseFloat(g('total').value)||0;
+  var pl=periodLabel(months,days);
+
+  if(total&&pl){
+    g('amt').innerHTML=seat+' · <span class="amt-val">'+won(total)+'</span> '+(vat==='cash'?'(현금가)':'(부가세 포함)')+' / '+pl+' 계약';
+  }else if(total&&!pl){
+    g('amt').textContent='계약 기간을 입력해주세요';
+  }else{
+    g('amt').textContent='이용료를 입력해주세요';
+  }
+
+  g('dep').textContent='예치금 '+won(deposit)+' (퇴실 시 환급)';
+
+  if(!total||!pl||!s||!en){
+    g('pv').textContent='정보를 입력하면 메시지가 만들어집니다';
+    return;
+  }
+  var range=kDate(s)+' – '+kDate(en);
+  var vatTag=vat==='cash'?'':' (부가세 포함)';
+  var feeLabel=months?months+'개월':pl;
+  g('pv').textContent=MSG.contract
+    .replace(/{SEAT}/g,seat)
+    .replace(/{DEPOSIT}/g,won(deposit))
+    .replace(/{FEEPERIOD}/g,feeLabel)
+    .replace(/{PERIOD}/g,pl)
+    .replace(/{TOTAL}/g,won(total))
+    .replace(/{VATTAG}/g,vatTag)
+    .replace(/{RANGE}/g,range);
+}
+
+function copyText(text,onOk){
+  if(!text){toast('먼저 정보를 입력해주세요');return;}
+  text=keepBlank(text);
+  var ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;top:0;left:0;opacity:.01;font-size:16px';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');toast('복사됐어요!');if(onOk)onOk();}
+  catch(e){toast('복사 실패 — 다시 시도해주세요');}
+  document.body.removeChild(ta);
+}
+
+function buildQuick(){
+  var LABEL={blue:'상담 후',green:'(신규) 입금 확인 후',purple:'(기존) 입금 확인 후',red:'(기존) 계약 만료 안내',brown:'(종료 확정) 서류 안내',orange:'입주 안내'};
+  var html='',lastColor=null;
+  QUICK.forEach(function(q){
+    if(q.divider)html+='<div class="grp-div"></div>';
+    if(q.color!==lastColor){
+      html+='<div class="set-label set-label-'+q.color+'">'+(LABEL[q.color]||'')+'</div>';
+      lastColor=q.color;
+    }
+    html+='<div class="qset qset-'+q.color+'" data-key="'+q.key+'">'+
+      '<span class="qtag">'+q.step+'</span>'+
+      '<span class="qb-title">'+q.title+'</span>'+
+      '<span class="qb-copy">복사</span></div>';
+  });
+  g('quick').innerHTML=html;
+  g('quick').onclick=function(e){
+    var el=e.target.closest('.qset');if(!el)return;
+    var key=el.dataset.key;
+    var txt;
+    if(key==='contract'){
+      txt=g('pv').textContent;
+      if(txt.indexOf('정보를 입력하면')===0){toast('먼저 정보를 입력해주세요');return;}
+    }else{
+      txt=MSG[key];
+    }
+    copyText(txt,function(){
+      el.classList.add('ok');
+      el.querySelector('.qb-copy').textContent='복사됨';
+    });
+  };
+}
+function init(){
+  var t=new Date();
+  g('start').value=toStr(t);
+  g('months').value=3;
+
+  g('seat-seg').onclick=function(e){
+    var el=e.target.closest('.sg');if(!el)return;
+    seat=el.dataset.s;deposit=parseInt(el.dataset.dep);
+    this.querySelectorAll('.sg').forEach(function(b){b.classList.toggle('on',b.dataset.s===seat);});
+    render();
+  };
+  g('vat-seg').onclick=function(e){
+    var el=e.target.closest('.sg');if(!el)return;
+    vat=el.dataset.v;
+    this.querySelectorAll('.sg').forEach(function(b){b.classList.toggle('on',b.dataset.v===vat);});
+    applyMode();
+  };
+  ['net','monthly','total'].forEach(function(id){
+    g(id).addEventListener('input',function(){anchor=id;recalc();});
+  });
+  g('months').addEventListener('input',function(){syncFromPeriod();recalc();});
+  g('days').addEventListener('input',syncFromPeriod);
+  g('start').addEventListener('change',syncFromPeriod);
+  g('end').addEventListener('change',function(){syncFromEnd();recalc();});
+  g('cp').onclick=function(){
+    var t=g('pv').textContent;
+    if(t.indexOf('정보를 입력하면')===0){toast('먼저 정보를 입력해주세요');return;}
+    copyText(t);
+  };
+
+  buildQuick();
+  syncFromPeriod();
+  applyMode();
+}
+init();
+</script>
+</body>
+</html>
